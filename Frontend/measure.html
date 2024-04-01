@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitoring Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .chart-container {
+            display: block;
+            margin: 0 auto;
+            max-width: 80%;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Health Monitoring Dashboard</h1>
+    <div class="chart-container">
+        <canvas id="heartRateChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="spo2Chart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="tempChart"></canvas>
+    </div>
+
+    <script>
+        // Simulated data (replace with real sensor data)
+        const days = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'];
+        const heartRateData = [70, 72, 75, 78, 80]; // BPM
+        const spo2Data = [98, 97, 96, 95, 94]; // SpO2 percentage
+        const tempData = [98.6, 98.7, 98.8, 98.9, 99.0]; // Body temperature (Fahrenheit)
+
+        // Create individual line charts
+        const createChart = (id, label, data) => {
+            const ctx = document.getElementById(id).getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: days,
+                    datasets: [
+                        {
+                            label,
+                            data,
+                            borderColor: 'blue',
+                            fill: false,
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Days',
+                            },
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Values',
+                            },
+                        },
+                    },
+                },
+            });
+        };
+
+        createChart('heartRateChart', 'Heart Rate (BPM)', heartRateData);
+        createChart('spo2Chart', 'SpO2 (%)', spo2Data);
+        createChart('tempChart', 'Body Temperature (°F)', tempData);
+    </script>
+</body>
+</html>
