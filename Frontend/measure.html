@@ -39,55 +39,6 @@
         <canvas id="tempChart"></canvas>
     </div>
 
-    <script>
-        // Simulated data (replace with real sensor data)
-        const days = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'];
-        const heartRateData = [70, 72, 75, 78, 80]; // BPM
-        const spo2Data = [98, 97, 96, 95, 94]; // SpO2 percentage
-        const tempData = [98.6, 98.7, 98.8, 98.9, 99.0]; // Body temperature (Fahrenheit)
-
-        // Create individual line charts
-        const createChart = (id, label, data) => {
-            const ctx = document.getElementById(id).getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: days,
-                    datasets: [
-                        {
-                            label,
-                            data,
-                            borderColor: 'blue',
-                            fill: false,
-                        },
-                    ],
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: {
-                            display: true,
-                            title: {
-                                display: true,
-                                text: 'Days',
-                            },
-                        },
-                        y: {
-                            display: true,
-                            title: {
-                                display: true,
-                                text: 'Values',
-                            },
-                        },
-                    },
-                },
-            });
-        };
-
-        createChart('heartRateChart', 'Heart Rate (BPM)', heartRateData);
-        createChart('spo2Chart', 'SpO2 (%)', spo2Data);
-        createChart('tempChart', 'Body Temperature (°F)', tempData);
-    </script>
+    <script src="./Frontend/bundle.js"></script>
 </body>
 </html>
